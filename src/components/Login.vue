@@ -15,6 +15,8 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -24,7 +26,16 @@ export default {
   },
   methods: {
     handleLogin() {
-      console.log("logging in with", this.username, this.password)
+      console.log("logging in with", this.username, this.password);
+      axios.post('/api/login', {
+        username: this.username,
+        password: this.password
+      }).then(response => {
+        console.log("登录成功",response.data);
+      }).catch(error => {
+        console.log("登录失败",error.data);
+        // 处理登录失败的情况
+      })
     }
   }
 };
