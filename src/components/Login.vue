@@ -16,7 +16,6 @@
 </template>
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -31,7 +30,16 @@ export default {
         username: this.username,
         password: this.password
       }).then(response => {
-        console.log("登录成功",response.data);
+        if (response.status === 200 && response.data.code === 200) {
+          console.log("登录成功", response.data);
+          // 跳转到 main 页面
+          this.$router.push('/main');
+          console.log("跳转main 成功");
+        } else {
+          console.error("登录失败，状态码或数据不符合预期");
+          // 显示错误消息给用户
+          alert(response.data.message || "登录失败，请检查您的用户名和密码");
+        }
       }).catch(error => {
         console.log("登录失败",error.data);
         // 处理登录失败的情况

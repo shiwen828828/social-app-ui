@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    <LoginComponent />
+    <!-- 替换原有的 LoginComponent 为 router-view -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import LoginComponent from './components/Login.vue';
+// 移除对 LoginComponent 的导入和注册
 
 export default {
-  components: {
-    LoginComponent
-  }
-};
+  // 移除 components 属性
+}
 </script>
